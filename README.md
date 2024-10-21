@@ -14,9 +14,17 @@
 
 ---
 
-📊 **GPU Dashboard** is a WebUI for monitoring distributed GPU servers. It offers a simple but beautiful interface to track GPU usage across multiple servers in real-time.
+**GPU Dashboard** is a WebUI for monitoring distributed GPU servers. It offers a simple but beautiful interface to track GPU usage across multiple servers in real-time.
 
-# Installation
+## 🖼️ Preview
+
+<div align="center">
+  <img src="path/to/screenshot1.png" alt="Dashboard Overview" width="45%">
+&nbsp; &nbsp; &nbsp; &nbsp;
+  <img src="path/to/screenshot2.png" alt="GPU History" width="45%">
+</div>
+
+# 🛠️ Installation
 
 ## 1. WebUI Host (Machine A)
 
