@@ -19,9 +19,8 @@
 ## 🖼️ Preview
 
 <div align="center">
-  <img src="path/to/screenshot1.png" alt="Dashboard Overview" width="45%">
-&nbsp; &nbsp; &nbsp; &nbsp;
-  <img src="path/to/screenshot2.png" alt="GPU History" width="45%">
+  <img src="https://github.com/user-attachments/assets/69d823de-342e-4335-936b-dad766b15ac2" alt="Dashboard Overview" width="75%">
+  <img src="https://github.com/user-attachments/assets/b4d2ef3a-2e9e-4f92-bf0a-0ce5809c7994" alt="GPU History" width="75%">
 </div>
 
 # 🛠️ Installation
