@@ -1,33 +1,69 @@
-This projects includes two machines, one for local major machine (`src/` and `server/`) and another for distributed machine (`server_api/`). It relies on ngrok for tunneling the app.
+<div align="center">
+  <h1>🚀 GPU Dashboard</h1>
+  <p><em>A powerful solution for easy deployment and real-time monitoring of distributed GPU servers</em></p>
+</div>
 
-# Install
+<p align="center">
+  <a href="https://status.cvmlgpu.org" target="_blank">
+    <img src="https://img.shields.io/badge/Live%20Demo-Try%20Now-brightgreen?style=for-the-badge&logo=github" alt="Live Demo" />
+  </a>
+  <a href="https://github.com/doem97/gpu_dashboard/issues">
+    <img src="https://img.shields.io/badge/Feedback-Issues-red?style=for-the-badge&logo=github" alt="Feedback" />
+  </a>
+</p>
 
-## On WebUI-Holder Machine `A`
+---
 
-```
-git clone git@github.com:doem97/gpu_dashboard.git
-cd gpu_dashboard
-cp config.default.json config.json
-# edit config.json with your server info
-npm install
-npm run dev
-# In another terminal
-ngrok http --domain=$YOUR_NGROK_DOMAIN 3000
-```
+📊 **GPU Dashboard** is a WebUI for monitoring distributed GPU servers. It offers a simple but beautiful interface to track GPU usage across multiple servers in real-time.
 
-Please note for the `config.json`, the `ip` field should be the ip that directly access-able with ssh-key enabled. The `proxy` field should be the ngrok free link (obtained from distributing machine, *e.g.*, a DGXv4 behind firewall).
+# Installation
 
-## On Distributing Machine `B` (optionial)
+## 1. WebUI Host (Machine A)
 
-This feature is optional. It is useful when you want to monitor the GPU status of a machine `B` that is behind a firewall (not directly ssh-able by `A`).
+1. Clone the repository:
+   ```
+   git clone https://github.com/doem97/gpu_dashboard.git
+   cd gpu_dashboard
+   ```
 
-```
-git clone git@github.com:doem97/gpu_dashboard.git
-cd gpu_dashboard/server_api
-npm install
-npm run dev
-# (in another terminal)
-ngrok http --domain=$YOUR_NGROK_DOMAIN 3200
-```
+2. Set up configuration:
+   ```
+   cp config.default.json config.json
+   ```
+   Edit `config.json` with your server details.
 
-After running the above command, you should be able to obtain a proxy api url for the distributing machine. Please update the `config.json` file on the webui-holder machine `A` with that proxy api url.
+3. Install dependencies and start the app:
+   ```
+   npm install
+   npm run dev
+   ```
+
+4. Set up ngrok tunnel (in a new terminal):
+   ```
+   ngrok http --domain=YOUR_NGROK_DOMAIN 3000
+   ```
+
+Note: In `config.json`, use SSH-accessible IPs for the `ip` field. For `proxy`, use the ngrok URL from the distributing machine (if applicable).
+
+## 2. Distributing Machine (Machine B) - Optional
+
+Only needed for machines behind a firewall.
+
+1. Clone and navigate to the server API:
+   ```
+   git clone https://github.com/doem97/gpu_dashboard.git
+   cd gpu_dashboard/server_api
+   ```
+
+2. Install dependencies and start the server:
+   ```
+   npm install
+   npm run dev
+   ```
+
+3. Set up ngrok tunnel (in a new terminal):
+   ```
+   ngrok http --domain=YOUR_NGROK_DOMAIN 3200
+   ```
+
+4. Update `config.json` on Machine A with the new ngrok URL as the proxy API URL.
