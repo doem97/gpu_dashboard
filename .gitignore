@@ -26,7 +26,7 @@ yarn-error.log*
 server/data/*.json
 
 # Environment variables
-.env
+/.env
 
 # Configuration file
 config.json
