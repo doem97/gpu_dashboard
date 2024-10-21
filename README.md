@@ -19,8 +19,8 @@
 ## 🖼️ Preview
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/69d823de-342e-4335-936b-dad766b15ac2" alt="Dashboard Overview" width="75%">
-  <img src="https://github.com/user-attachments/assets/b4d2ef3a-2e9e-4f92-bf0a-0ce5809c7994" alt="GPU History" width="75%">
+  <img src="https://github.com/user-attachments/assets/69d823de-342e-4335-936b-dad766b15ac2" alt="Dashboard Overview" width="90%">
+  <img src="https://github.com/user-attachments/assets/b4d2ef3a-2e9e-4f92-bf0a-0ce5809c7994" alt="GPU History" width="90%">
 </div>
 
 # 🛠️ Installation
