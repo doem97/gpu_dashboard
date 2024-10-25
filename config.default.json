@@ -3,6 +3,8 @@
         {
             "name": "Server 1",
             "ip": "0.0.0.0",
+            "username": "your_username",
+            "privateKeyPath": "/path/to/your/.ssh/key",
             "proxy": null,
             "gpu": "4*2080Ti"
         },
