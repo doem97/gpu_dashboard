@@ -46,6 +46,7 @@ async function recordGPUData(server) {
     }
 }
 
+app.set('trust proxy', 1);
 
 app.get('/api/servers', (req, res) => {
     res.json(servers);
