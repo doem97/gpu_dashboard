@@ -50,12 +50,43 @@ const fetchGPUData = async (serverName) => {
                         });
 
                         stream.on('end', () => {
-                            conn.end();  // Close the connection
-                            const gpuData = data.trim().split('\n').map(line => {
+                            conn.end();
+                            const lines = data.trim().split('\n');
+
+                            // Check if we got any data
+                            if (!data.trim()) {
+                                resolve([{
+                                    index: '0',
+                                    name: 'Unknown GPU',
+                                    temp: '0',
+                                    util: '0',
+                                    memUsed: '0',
+                                    memTotal: '0',
+                                    error: 'No GPU data received'
+                                }]);
+                                return;
+                            }
+
+                            const gpuData = lines.map(line => {
                                 const [index, fullName, temp, util, memUsed, memTotal] = line.split(', ');
+
+                                // If we got malformed data, return error state
+                                if (!fullName || !temp || !util || !memUsed || !memTotal) {
+                                    return {
+                                        index: index || '0',
+                                        name: 'Unknown GPU',
+                                        temp: '0',
+                                        util: '0',
+                                        memUsed: '0',
+                                        memTotal: '0',
+                                        error: 'Malformed GPU data'
+                                    };
+                                }
+
                                 const name = fullName.replace(/^NVIDIA GeForce\s+/, '');
                                 return { index, name, temp, util, memUsed, memTotal };
                             });
+
                             resolve(gpuData);
                         });
 
