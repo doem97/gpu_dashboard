@@ -75,7 +75,7 @@ const Dashboard = () => {
     });
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+        <div className="min-h-screen">
             <div className="max-w-7xl mx-auto px-4 py-8">
                 <div className="flex justify-between items-center mb-6">
                     <h1 className="text-2xl sm:text-4xl font-bold text-gray-800 dark:text-white">

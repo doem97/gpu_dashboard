@@ -9,6 +9,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transform: scale(0.95);
+  transform-origin: top center;
+  background: linear-gradient(to bottom right, rgb(243 244 246), rgb(229 231 235));
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(to bottom right, rgb(31 41 55), rgb(17 24 39));
+  }
 }
 
 code {

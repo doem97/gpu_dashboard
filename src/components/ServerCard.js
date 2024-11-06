@@ -22,6 +22,16 @@ const ServerCard = ({ server, isPinned, onTogglePin }) => {
     const [gpuData, setGpuData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isFolded, setIsFolded] = useState(() => {
+        const saved = localStorage.getItem(`server-${server.name}-folded`);
+        return saved ? JSON.parse(saved) : false;
+    });
+
+    const handleFoldToggle = () => {
+        const newState = !isFolded;
+        setIsFolded(newState);
+        localStorage.setItem(`server-${server.name}-folded`, JSON.stringify(newState));
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -70,8 +80,22 @@ const ServerCard = ({ server, isPinned, onTogglePin }) => {
         >
             <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center">
-                    <h2 className="text-xl font-bold text-gray-800 dark:text-white mr-3">{server.name}</h2>
-                    <span className="inline-block text-sm font-medium text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 px-2 py-.5 rounded-full mt-.5">
+                    <button
+                        onClick={handleFoldToggle}
+                        className="flex items-center space-x-2 focus:outline-none"
+                    >
+                        <motion.svg
+                            className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                            animate={{ rotate: isFolded ? -90 : 0 }}
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                        >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </motion.svg>
+                        <h2 className="text-xl font-bold text-gray-800 dark:text-white">{server.name}</h2>
+                    </button>
+                    <span className="inline-block text-sm font-medium text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 px-2 py-.5 rounded-full mt-.5 ml-3">
                         {server.ip}
                     </span>
                 </div>
@@ -87,17 +111,33 @@ const ServerCard = ({ server, isPinned, onTogglePin }) => {
                     <MdPushPin size={18} className={isPinned ? 'fill-current' : ''} />
                 </motion.button>
             </div>
-            {gpuData.length > 0 ? (
-                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 -mx-3 sm:-mx-0">
-                    {gpuData.map((gpu) => (
-                        <div key={gpu.index}>
-                            <GPUCard gpu={gpu} />
-                        </div>
-                    ))}
-                </div>
-            ) : (
-                <p className="text-gray-600 dark:text-gray-400">Unable to fetch GPU data. Please check server connection.</p>
-            )}
+            <motion.div
+                animate={{
+                    height: isFolded ? 0 : "auto",
+                    opacity: isFolded ? 0 : 1
+                }}
+                initial={false}
+                transition={{
+                    duration: 0.3,
+                    ease: "easeInOut"
+                }}
+                className="relative"
+                style={{
+                    overflow: isFolded ? 'hidden' : 'visible'
+                }}
+            >
+                {gpuData.length > 0 ? (
+                    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 -mx-3 sm:-mx-0">
+                        {gpuData.map((gpu) => (
+                            <div key={gpu.index} className="relative" style={{ zIndex: 1 }}>
+                                <GPUCard gpu={gpu} />
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <p className="text-gray-600 dark:text-gray-400">Unable to fetch GPU data. Please check server connection.</p>
+                )}
+            </motion.div>
         </motion.div>
     );
 };
