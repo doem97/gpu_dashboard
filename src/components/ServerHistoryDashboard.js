@@ -3,29 +3,53 @@ import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
 import { MdPushPin } from 'react-icons/md';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Switch } from '@headlessui/react';
+import { HiOutlineClock, HiOutlineCalendarDays } from 'react-icons/hi2';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 
 const ToggleSwitch = ({ isSevenDays, onToggle }) => (
-    <div className="inline-flex rounded-full bg-gray-300 dark:bg-gray-700 p-0.5">
-        <button
-            className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 ease-in-out ${!isSevenDays
-                ? 'bg-blue-500 text-white'
-                : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-300 dark:hover:bg-gray-600'
-                }`}
-            onClick={() => onToggle(false)}
-        >
-            24 Hrs
-        </button>
-        <button
-            className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 ease-in-out ${isSevenDays
-                ? 'bg-blue-500 text-white'
-                : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-300 dark:hover:bg-gray-600'
-                }`}
-            onClick={() => onToggle(true)}
-        >
-            7 Days
-        </button>
+    <div className="flex items-center gap-2">
+        <Switch.Group as="div" className="flex items-center gap-3">
+            <Switch.Label
+                className={`text-sm font-medium cursor-pointer transition-colors duration-200
+                    ${!isSevenDays ? 'text-blue-500' : 'text-gray-400 dark:text-gray-500'}`}
+            >
+                <div className="flex items-center gap-1">
+                    <HiOutlineClock className="w-4 h-4" />
+                    24h
+                </div>
+            </Switch.Label>
+
+            <Switch
+                checked={isSevenDays}
+                onChange={onToggle}
+                className={`
+                    relative inline-flex h-6 w-[52px] shrink-0 cursor-pointer rounded-full
+                    border-2 border-transparent transition-colors duration-200 ease-in-out
+                    ${isSevenDays ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600'}
+                `}
+            >
+                <span className="sr-only">Toggle view</span>
+                <span
+                    className={`
+                        pointer-events-none inline-block h-5 w-5 transform rounded-full
+                        bg-white shadow-lg ring-0 transition duration-200 ease-in-out
+                        ${isSevenDays ? 'translate-x-[28px]' : 'translate-x-0'}
+                    `}
+                />
+            </Switch>
+
+            <Switch.Label
+                className={`text-sm font-medium cursor-pointer transition-colors duration-200
+                    ${isSevenDays ? 'text-blue-500' : 'text-gray-400 dark:text-gray-500'}`}
+            >
+                <div className="flex items-center gap-1">
+                    <HiOutlineCalendarDays className="w-4 h-4" />
+                    7d
+                </div>
+            </Switch.Label>
+        </Switch.Group>
     </div>
 );
 
