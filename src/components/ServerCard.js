@@ -114,7 +114,8 @@ const ServerCard = ({ server, isPinned, onTogglePin }) => {
             <motion.div
                 animate={{
                     height: isFolded ? 0 : "auto",
-                    opacity: isFolded ? 0 : 1
+                    opacity: isFolded ? 0 : 1,
+                    marginBottom: isFolded ? '-12px' : 0
                 }}
                 initial={false}
                 transition={{
