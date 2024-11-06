@@ -6,6 +6,7 @@ import ViewCounter from './ViewCounter';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { HiServer } from 'react-icons/hi';
 
 const Dashboard = () => {
     const [servers, setServers] = useState([]);
@@ -74,13 +75,39 @@ const Dashboard = () => {
         return 0;
     });
 
+    const titleVariants = {
+        initial: { opacity: 0, y: -20 },
+        animate: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.6,
+                ease: "easeOut"
+            }
+        }
+    };
+
     return (
         <div className="min-h-screen">
             <div className="max-w-7xl mx-auto px-4 py-8">
                 <div className="flex justify-between items-center mb-6">
-                    <h1 className="text-2xl sm:text-4xl font-bold text-gray-800 dark:text-white">
-                        CVML Server Dashboard
-                    </h1>
+                    <motion.div
+                        className="flex items-center gap-3"
+                        variants={titleVariants}
+                        initial="initial"
+                        animate="animate"
+                    >
+                        <HiServer className="w-8 h-8 text-blue-500" />
+                        <h1 className={`
+                            text-2xl md:text-4xl font-bold tracking-tight
+                            bg-clip-text text-transparent drop-shadow-sm
+                            dark:bg-gradient-to-r dark:from-blue-600 dark:to-indigo-600
+                            bg-gradient-to-r from-slate-700 to-slate-900
+                            hover:scale-102 transition-transform duration-200
+                        `}>
+                            CVML Dashboard
+                        </h1>
+                    </motion.div>
                     <SharedToolbox />
                 </div>
                 <AnimatePresence>

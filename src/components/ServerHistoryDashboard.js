@@ -4,7 +4,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 import { MdPushPin } from 'react-icons/md';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Switch } from '@headlessui/react';
-import { HiOutlineClock, HiOutlineCalendarDays } from 'react-icons/hi2';
+import { HiOutlineClock, HiOutlineCalendarDays, HiOutlineChartBar } from 'react-icons/hi2';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 
@@ -263,8 +263,17 @@ const ServerHistoryDashboard = ({ servers, pinnedServers, onTogglePin }) => {
 
     return (
         <div className="mt-8">
-            <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Workload History</h2>
+            <div className="flex justify-between items-center mb-6">
+                <div className="flex items-center gap-3">
+                    <HiOutlineChartBar className="w-7 h-7 text-blue-500" />
+                    <h2 className={`
+                        text-2xl font-bold bg-clip-text text-transparent tracking-tight drop-shadow-sm
+                        dark:bg-gradient-to-r dark:from-blue-600 dark:to-indigo-600
+                        bg-gradient-to-r from-slate-700 to-slate-900
+                    `}>
+                        Workload History
+                    </h2>
+                </div>
                 <div className="flex items-center">
                     <ToggleSwitch isSevenDays={isSevenDays} onToggle={setIsSevenDays} />
                 </div>

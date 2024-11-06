@@ -36,7 +36,7 @@ const SharedToolbox = () => {
                                  transition-all duration-200"
                     >
                         <HiSparkles className="w-5 h-5 mr-2" />
-                        <span className="font-medium">Tool Box</span>
+                        <span className="font-medium">Toolbox</span>
                         <FaChevronDown
                             className={`ml-2 h-4 w-4 transition-transform duration-200 ${open ? 'transform rotate-180' : ''
                                 }`}
