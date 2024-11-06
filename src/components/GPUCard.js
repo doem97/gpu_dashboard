@@ -42,7 +42,7 @@ const GPUCard = ({ gpu }) => {
     const memoryUsagePercentage = (parseFloat(gpu.memUsed) / parseFloat(gpu.memTotal)) * 100;
 
     return (
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 flex flex-col h-full border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:border-blue-300 dark:hover:border-blue-500">
+        <div className="bg-white dark:bg-gray-800/90 rounded-xl shadow-lg p-4 flex flex-col h-full border border-gray-200 dark:border-gray-600/50 transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:border-blue-300 dark:hover:border-blue-500">
             <h3 className="text-base font-semibold mb-2 text-gray-800 dark:text-white">{gpu.name}</h3>
             <div className="flex-grow space-y-4">
                 <div>

@@ -73,7 +73,7 @@ const ServerCard = ({ server, isPinned, onTogglePin }) => {
 
     return (
         <motion.div
-            className="bg-white dark:bg-gray-800 rounded-lg p-6 mb-6 border border-gray-200 dark:border-gray-700 transition-all duration-300"
+            className="bg-white dark:bg-gray-800/50 rounded-lg p-6 mb-6 border border-gray-200 dark:border-gray-700/50 transition-all duration-300"
             variants={cardVariants}
             animate={isPinned ? "pinned" : "unpinned"}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
