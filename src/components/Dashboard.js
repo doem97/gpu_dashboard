@@ -6,7 +6,7 @@ import ViewCounter from './ViewCounter';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import { HiServer } from 'react-icons/hi';
+import { HiServer, HiSpeakerphone } from 'react-icons/hi';
 
 const Dashboard = () => {
     const [servers, setServers] = useState([]);
@@ -19,6 +19,19 @@ const Dashboard = () => {
         const saved = localStorage.getItem('pinnedHistoryCards');
         return saved ? JSON.parse(saved) : [];
     });
+
+    const notifications = [
+        // {
+        //     id: 1,
+        //     type: 'warning',
+        //     message: '[Zichen] CVPR DDL is approaching, please pardon me to use all GPUs till Friday, 15 Nov 2024 3:00 PM, thanks all!',
+        // },
+        {
+            id: 1,
+            type: 'info',
+            message: 'Have been notified of the slow IO issue on Server 135/136. Scheduled to resolve after (Fri) 22 Nov 2024.',
+        }
+    ];
 
     useEffect(() => {
         axios.get('/api/servers')
@@ -90,6 +103,24 @@ const Dashboard = () => {
     return (
         <div className="min-h-screen">
             <div className="max-w-7xl mx-auto px-4 py-8">
+                <div className="mb-6">
+                    {notifications.map((notification) => (
+                        <motion.div
+                            key={notification.id}
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className={`
+                                flex items-center gap-2 p-3 rounded-lg mb-2
+                                ${notification.type === 'warning'
+                                    ? 'bg-amber-50 dark:bg-amber-900/20 text-amber-800 dark:text-amber-200'
+                                    : 'bg-blue-50 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200'}
+                            `}
+                        >
+                            <HiSpeakerphone className="w-5 h-5 flex-shrink-0" />
+                            <span className="text-sm font-medium">{notification.message}</span>
+                        </motion.div>
+                    ))}
+                </div>
                 <div className="flex justify-between items-center mb-6">
                     <motion.div
                         className="flex items-center gap-3"
