@@ -29,7 +29,7 @@ const Dashboard = () => {
         {
             id: 1,
             type: 'info',
-            message: 'Have been notified of the slow IO issue on Server 135/136. Scheduled to resolve after (Fri) 22 Nov 2024.',
+            message: '[Tue, 18 Feb 2025] All servers are running normally.',
         }
     ];
 
